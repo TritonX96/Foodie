@@ -3,7 +3,9 @@ package com.isaac.foodie;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,13 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class ResRecyclerViewActivity extends AppCompatActivity {
 
+    DatabaseReference mReference;
     RecyclerView restaurantRecyclerView;
     RestaurantAdapter mRestaurantAdapter;
-    List <RestaurantDetails> mData;
+    //List <RestaurantDetails> mRestaurant;
+    ArrayList<RestaurantDetails> mRestaurantDetailsArrayList;
 
 
 
@@ -30,19 +39,30 @@ public class ResRecyclerViewActivity extends AppCompatActivity {
         //ini view
 
         restaurantRecyclerView = findViewById(R.id.restaurant_rv);
-        mData = new ArrayList<>();
-        // fill list restaurant with data
-        // testing purposes
-
-        mData.add(new RestaurantDetails("Creamery Boutique Ice Creams KL","Sunway City","B-02-08, Sunway Geo Avenue Jalan Lagoon Selatan Sunway South Quay, Bandar Sunway, 47500 Subang Jaya, Selangor","Dessert","3.064696","101.610165"));
-        mData.add(new RestaurantDetails("Okra Nyonya","Sunway City","B-02-09, Sunway Geo Avenue Jalan Lagoon Selatan Sunway South Quay, Bandar Sunway, 47500 Subang Jaya, Selangor","Dessert","3.064600","101.609989"));
-        mData.add(new RestaurantDetails("Haidilao Hot Pot @Sunway Pyramid","Sunway City","G1.PT.02 Sunway Pyramid, 3, Jalan PJS 11/15, Bandar Sunway, 47500 Subang Jaya, Selangor","Hot Pot Restaurant","3.072201","101.608217"));
-        mData.add(new RestaurantDetails("After Black","Sunway City","23, Jalan PJS 11/9, Bandar Sunway, 46150 Petaling Jaya, Selangor","Cafe","3.067979","101.603196"));
+        mRestaurantDetailsArrayList = new ArrayList<>();
 
 
-        mRestaurantAdapter = new RestaurantAdapter(this,mData);
-        restaurantRecyclerView.setAdapter(mRestaurantAdapter);
+        //mRestaurantAdapter = new RestaurantAdapter(this,mRestaurant);
+        //restaurantRecyclerView.setAdapter(mRestaurantAdapter);
         restaurantRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mReference=FirebaseDatabase.getInstance().getReference().child("Restaurant");
+        mReference.addValueEventListener((new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    RestaurantDetails r = dataSnapshot1.getValue(RestaurantDetails.class);
+                    mRestaurantDetailsArrayList.add(r);
+                }
+                mRestaurantAdapter = new RestaurantAdapter(ResRecyclerViewActivity.this,mRestaurantDetailsArrayList);
+                restaurantRecyclerView.setAdapter(mRestaurantAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(ResRecyclerViewActivity.this,"Error",Toast.LENGTH_SHORT);
+            }
+        }));
     }
 
 

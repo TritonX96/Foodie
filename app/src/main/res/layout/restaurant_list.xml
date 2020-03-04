@@ -38,15 +38,26 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/restaurant_Address"
+            android:id="@+id/restaurant_Location"
             android:layout_width="297dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/restaurant_Name"
             android:layout_alignStart="@id/restaurant_Name"
             android:layout_alignParentTop="true"
             android:layout_marginTop="32dp"
-            android:text="Restaurant Address"
+            android:text="Restaurant Location"
             android:textColor="@color/title_text_color" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/restaurant_Address"-->
+<!--            android:layout_width="297dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/restaurant_Name"-->
+<!--            android:layout_alignStart="@id/restaurant_Name"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_marginTop="32dp"-->
+<!--            android:text="Restaurant Address"-->
+<!--            android:textColor="@color/title_text_color" />-->
 
         <TextView
             android:id="@+id/restaurant_Category"
