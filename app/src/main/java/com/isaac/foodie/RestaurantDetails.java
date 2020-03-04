@@ -9,7 +9,7 @@ public class RestaurantDetails {
         private String mLang;
         private String mLong;
 
-    public static RestaurantDetails(String name, String location, String address, String category, String lang, String aLong) {
+    public  RestaurantDetails(String name, String location, String address, String category, String lang, String aLong) {
         mName = name;
         mLocation = location;
         mAddress = address;
