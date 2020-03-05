@@ -2,75 +2,73 @@ package com.isaac.foodie;
 
 public class RestaurantDetails {
         //private UUID mId;
-        private String mName;
-        private String mLocation;
-        private String mAddress;
-        private String mCategory;
-        private String mLang;
-        private String mLong;
+        private String name;
+        private String location;
+        private String address;
+        private String category;
+        private String lang;
+        private String lon;
 
-//    public  RestaurantDetails(String name, String location, String address, String category, String lang, String aLong) {
-//        mName = name;
-//        mLocation = location;
-//        mAddress = address;
-//        mCategory = category;
-//        mLang = lang;
-//        mLong = aLong;
-//    }
+    public RestaurantDetails(String name, String location, String address, String category, String lang, String lon) {
+        this.name = name;
+        this.location = location;
+        this.address = address;
+        this.category = category;
+        this.lang = lang;
+        this.lon = lon;
+    }
 
-    //    public UUID getId() {
-//        return mId;
-//    }
-//
-//    public void setId(UUID id) {
-//        mId = id;
-//    }
+    public RestaurantDetails() {
+    }
+
+
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 
     public String getLocation() {
-        return mLocation;
+        return location;
     }
 
     public void setLocation(String location) {
-        mLocation = location;
+        this.location = location;
     }
 
     public String getAddress() {
-        return mAddress;
+        return address;
     }
 
     public void setAddress(String address) {
-        mAddress = address;
+        this.address = address;
     }
 
     public String getCategory() {
-        return mCategory;
+        return category;
     }
 
     public void setCategory(String category) {
-        mCategory = category;
+        this.category = category;
     }
 
     public String getLang() {
-        return mLang;
+        return lang;
     }
 
     public void setLang(String lang) {
-        mLang = lang;
+        this.lang = lang;
     }
 
-    public String getLong() {
-        return mLong;
+    public String getLon() {
+        return lon;
     }
 
-    public void setLong(String aLong) {
-        mLong = aLong;
+    public void setLon(String lon) {
+        this.lon = lon;
     }
+
 }

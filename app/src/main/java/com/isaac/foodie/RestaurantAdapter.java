@@ -8,16 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMapOptions;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.MapsInitializer;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolylineOptions;
+
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -58,13 +49,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             //bind data here
 
         restaurantViewHolder.restaurant_Name.setText(mRestaurant.get(position).getName());
-        //restaurantViewHolder.restaurant_Address.setText(mRestaurant.get(position).getAddress());
+        restaurantViewHolder.restaurant_Address.setText(mRestaurant.get(position).getAddress());
         restaurantViewHolder.restaurant_Location.setText(mRestaurant.get(position).getLocation());
         restaurantViewHolder.restaurant_Category.setText(mRestaurant.get(position).getCategory());
-
-
-
-
     }
 
     @Override
@@ -82,10 +69,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             super(itemView);
 
             restaurant_Name = itemView.findViewById(R.id.restaurant_Name);
-            //restaurant_Address = itemView.findViewById(R.id.restaurant_Address);
+            restaurant_Address = itemView.findViewById(R.id.restaurant_Address);
             restaurant_Category = itemView.findViewById(R.id.restaurant_Category);
             restaurant_Location = itemView.findViewById(R.id.restaurant_Location);
-
         }
     }
 
