@@ -3,11 +3,9 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.isaac.foodie">
 
-
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <dist:module dist:instant="true" />
 
@@ -19,11 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="@string/map_key"/>
-
-        <activity android:name=".MapActivity"></activity>
-        <activity android:name=".ResRecyclerViewActivity"></activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyANd6E-8-NvCwFDQg78SktmTY4KgAR7UzU" />
+        <activity android:name=".RestaurantInfoActivity" />
+        <activity android:name=".MapActivity" />
+        <activity android:name=".ResRecyclerViewActivity" />
         <activity android:name=".PermissionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

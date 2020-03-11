@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Foodie</string>
     <string name="map_key" translatable="false">AIzaSyANd6E-8-NvCwFDQg78SktmTY4KgAR7UzU</string>
+    <string name="title_activity_click_maps">Map</string>
 </resources>

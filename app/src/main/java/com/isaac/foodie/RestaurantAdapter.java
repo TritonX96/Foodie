@@ -3,23 +3,28 @@ package com.isaac.foodie;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
+import android.content.Intent;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder> {
 
-    Context mContext;
-    ArrayList<RestaurantDetails> mRestaurantDetailsArrayList;
+    private static final String TAG = "RecyclerViewAdapter";
+
+    private Context mContext;
+    private ArrayList<RestaurantDetails> mRestaurantDetailsArrayList;
     private OnRestaurantListener mOnRestaurantListener;
 
 
@@ -33,19 +38,18 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
     @Override
     public RestaurantViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        View layout;
-        layout = LayoutInflater.from(mContext).inflate(R.layout.restaurant_list,viewGroup,false);
-
-
+        View layout = LayoutInflater.from(mContext).inflate(R.layout.restaurant_list,viewGroup,false);
         return new RestaurantViewHolder(layout);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantViewHolder restaurantViewHolder, int position) {
-            //bind data here
+        Log.d(TAG, "onBindViewHolder: called.");
 
+        //bind data here
+        RestaurantDetails currentDetails = mRestaurantDetailsArrayList.get(position); //check again later
         restaurantViewHolder.restaurant_Name.setText(mRestaurantDetailsArrayList.get(position).getName());
-        restaurantViewHolder.restaurant_Address.setText(mRestaurantDetailsArrayList.get(position).getAddress());
+        //restaurantViewHolder.restaurant_Address.setText(mRestaurantDetailsArrayList.get(position).getAddress());
         restaurantViewHolder.restaurant_Location.setText(mRestaurantDetailsArrayList.get(position).getLocation());
         restaurantViewHolder.restaurant_Category.setText(mRestaurantDetailsArrayList.get(position).getCategory());
     }
@@ -64,9 +68,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
         public RestaurantViewHolder(@NonNull View itemView){
             super(itemView);
-
             restaurant_Name = itemView.findViewById(R.id.restaurant_Name);
-            restaurant_Address = itemView.findViewById(R.id.restaurant_Address);
+            //restaurant_Address = itemView.findViewById(R.id.restaurant_Address);
             restaurant_Category = itemView.findViewById(R.id.restaurant_Category);
             restaurant_Location = itemView.findViewById(R.id.restaurant_Location);
 
@@ -75,13 +78,27 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
         @Override
         public void onClick(View view) {
-            onRestaurantListener.onRestaurantClick(getAdapterPosition());
+            Log.d(TAG, "onClick: clicked on ");
 
+//            if(mOnRestaurantListener!=null){
+//                int position = getAdapterPosition();
+//                if(position!=RecyclerView.NO_POSITION) {
+//                    onRestaurantListener.onRestaurantClick(getAdapterPosition());
+//                }
+//            }
+
+            Intent intent = new Intent(mContext, RestaurantInfoActivity.class);
+            mContext.startActivity(intent);
         }
+
     }
 
     public interface OnRestaurantListener{
         void onRestaurantClick(int position);
+    }
+
+    public void setOnRestaurantListener(OnRestaurantListener listener){
+        mOnRestaurantListener = listener;
     }
 
 

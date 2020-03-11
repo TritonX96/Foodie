@@ -1,9 +1,11 @@
 package com.isaac.foodie;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,32 +23,38 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class ResRecyclerViewActivity extends AppCompatActivity {
+public class ResRecyclerViewActivity extends AppCompatActivity implements RestaurantAdapter.OnRestaurantListener {
 
+    private static final String TAG = ResRecyclerViewActivity.class.getSimpleName();
     DatabaseReference mReference;
     RecyclerView restaurantRecyclerView;
     RestaurantAdapter mRestaurantAdapter;
     //List <RestaurantDetails> mRestaurant;
     ArrayList<RestaurantDetails> mRestaurantDetailsArrayList;
 
+    private void openInfoActivity(String[] data){
+        Intent intent = new Intent(this, RestaurantInfoActivity.class);
+        intent.putExtra("RESTAURANT_NAME",data[0]);
+        startActivity(intent);
+    }
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurantlist);
+        Log.d(TAG, "onCreate: started.");
 
         //ini view
-
         restaurantRecyclerView = findViewById(R.id.restaurant_rv);
         mRestaurantDetailsArrayList = new ArrayList<>();
-
-
-        //mRestaurantAdapter = new RestaurantAdapter(this,mRestaurant);
-        //restaurantRecyclerView.setAdapter(mRestaurantAdapter);
         restaurantRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRestaurantAdapter = new RestaurantAdapter (ResRecyclerViewActivity.this,mRestaurantDetailsArrayList);
+        restaurantRecyclerView.setAdapter(mRestaurantAdapter);
+        mRestaurantAdapter.setOnRestaurantListener(ResRecyclerViewActivity.this);
 
         mReference=FirebaseDatabase.getInstance().getReference().child("Restaurant");
+
         mReference.addValueEventListener((new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -63,7 +71,18 @@ public class ResRecyclerViewActivity extends AppCompatActivity {
                 Toast.makeText(ResRecyclerViewActivity.this,"Error",Toast.LENGTH_SHORT);
             }
         }));
+
+
     }
+    @Override
+    public void onRestaurantClick(int position) {
+        RestaurantDetails clickedRestaurant = mRestaurantDetailsArrayList.get(position);
+        String [] restaurantData = {clickedRestaurant.getName()};
+        openInfoActivity(restaurantData);
+        Toast toast=Toast. makeText(getApplicationContext(),"This is clicked",Toast. LENGTH_SHORT);
+        Log.d(TAG,"This is clicked");
+    }
+
 
 
 }
