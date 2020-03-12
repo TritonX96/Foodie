@@ -25,9 +25,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
     private Context mContext;
     private ArrayList<RestaurantDetails> mRestaurantDetailsArrayList;
-    private OnRestaurantListener mOnRestaurantListener;
-
-
+    //private OnRestaurantListener mOnRestaurantListener;
 
     public RestaurantAdapter(Context c, ArrayList<RestaurantDetails> r){
         mContext = c;
@@ -47,11 +45,19 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         Log.d(TAG, "onBindViewHolder: called.");
 
         //bind data here
-        RestaurantDetails currentDetails = mRestaurantDetailsArrayList.get(position); //check again later
-        restaurantViewHolder.restaurant_Name.setText(mRestaurantDetailsArrayList.get(position).getName());
-        //restaurantViewHolder.restaurant_Address.setText(mRestaurantDetailsArrayList.get(position).getAddress());
-        restaurantViewHolder.restaurant_Location.setText(mRestaurantDetailsArrayList.get(position).getLocation());
-        restaurantViewHolder.restaurant_Category.setText(mRestaurantDetailsArrayList.get(position).getCategory());
+        RestaurantDetails mRestaurantDetails = mRestaurantDetailsArrayList.get(position); //check again later
+        restaurantViewHolder.restaurant_Name.setText(mRestaurantDetails.getName());
+        //restaurantViewHolder.restaurant_Address.setText(mRestaurantDetails.getAddress());
+        restaurantViewHolder.restaurant_Location.setText(mRestaurantDetails.getLocation());
+        restaurantViewHolder.restaurant_Category.setText(mRestaurantDetails.getCategory());
+
+        restaurantViewHolder.setRestaurantClickListener(new OnRestaurantListener()
+        {
+            @Override
+            public void onRestaurantClick(int position) {
+
+            }
+        });
     }
 
     @Override
@@ -59,12 +65,23 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         return mRestaurantDetailsArrayList.size();
     }
 
+    //Open InfOActivity https://www.youtube.com/watch?v=IXzp1BDLlFE
+    private void openInfoActivity (String...info)
+    {
+        Intent i = new Intent(mContext, RestaurantInfoActivity.class);
+
+        i.putExtra("NAME_KEY",info[0]);
+        i.putExtra("CATEGORY_KEY",info[1]);
+        i.putExtra("LOCATION_KEY",info[2]);
+
+        mContext.startActivity(i);
+    }
+
+    //View Holder component
     public class RestaurantViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView restaurant_Longitude,restaurant_Latitude;
         TextView restaurant_Name,restaurant_Address,restaurant_Category,restaurant_Location;
-
-        OnRestaurantListener onRestaurantListener;
+        OnRestaurantListener mOnRestaurantListener;
 
         public RestaurantViewHolder(@NonNull View itemView){
             super(itemView);
@@ -76,29 +93,19 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             itemView.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View view) {
-            Log.d(TAG, "onClick: clicked on ");
-
-//            if(mOnRestaurantListener!=null){
-//                int position = getAdapterPosition();
-//                if(position!=RecyclerView.NO_POSITION) {
-//                    onRestaurantListener.onRestaurantClick(getAdapterPosition());
-//                }
-//            }
-
-            Intent intent = new Intent(mContext, RestaurantInfoActivity.class);
-            mContext.startActivity(intent);
+        public void setRestaurantClickListener(OnRestaurantListener  mOnRestaurantListener){
+            this.mOnRestaurantListener=mOnRestaurantListener;
         }
 
+        @Override
+        public void onClick(View view){
+            this.mOnRestaurantListener.onRestaurantClick(this.getLayoutPosition());
+        }
     }
 
+    //OnRestaurantClickListener
     public interface OnRestaurantListener{
         void onRestaurantClick(int position);
-    }
-
-    public void setOnRestaurantListener(OnRestaurantListener listener){
-        mOnRestaurantListener = listener;
     }
 
 
