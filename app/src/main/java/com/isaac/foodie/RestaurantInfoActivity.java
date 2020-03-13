@@ -22,17 +22,18 @@ public class RestaurantInfoActivity extends AppCompatActivity {
         setContentView(R.layout.restaurant_details);
 
         //Action bar
-        ActionBar actionBar = getSupportActionBar();
+        //ActionBar actionBar = getSupportActionBar();
         //Actionbar title
-        actionBar.setTitle("Restaurant Detail");
+        //actionBar.setTitle("Restaurant Detail");
         //set back button in action bar
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar.setDisplayShowHomeEnabled(true);
 
         iRestaurantName = findViewById(R.id.restaurantName);
-        iRestaurantAddress = findViewById(R.id.restaurantAddress);
+        //iRestaurantAddress = findViewById(R.id.restaurantAddress);
         iRestaurantCategory = findViewById(R.id.restaurantCategory);
         iRestaurantLocation = findViewById(R.id.restaurantLocation);
+        //iRestaurantAddress = findViewById(R.id.restaurantAddress);
 
         //Get Intent
         Intent i = this.getIntent();
@@ -41,6 +42,12 @@ public class RestaurantInfoActivity extends AppCompatActivity {
         String name = i.getExtras().getString("NAME_KEY");
         String category = i.getExtras().getString("CATEGORY_KEY");
         String location = i.getExtras().getString("LOCATION_KEY");
+
+        //Bind data
+        iRestaurantName.setText(name);
+        iRestaurantCategory.setText(category);
+        iRestaurantLocation.setText(location);
+
 
 
     }
