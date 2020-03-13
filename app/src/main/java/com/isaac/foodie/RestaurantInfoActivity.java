@@ -1,6 +1,7 @@
 package com.isaac.foodie;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.widget.TextView;
@@ -33,15 +34,21 @@ public class RestaurantInfoActivity extends AppCompatActivity {
         iRestaurantCategory = findViewById(R.id.restaurantCategory);
         iRestaurantLocation = findViewById(R.id.restaurantLocation);
 
+        //Get Intent
+        Intent i = this.getIntent();
+
+        //Receive Data
+        String name = i.getExtras().getString("NAME_KEY");
+        String category = i.getExtras().getString("CATEGORY_KEY");
+        String location = i.getExtras().getString("LOCATION_KEY");
+
 
     }
 
     //handle onBackPressed to previous activity
-
-
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();;
+        onBackPressed();
         return true;
     }
 }

@@ -51,7 +51,8 @@ public class ResRecyclerViewActivity extends AppCompatActivity implements Restau
         restaurantRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRestaurantAdapter = new RestaurantAdapter (ResRecyclerViewActivity.this,mRestaurantDetailsArrayList);
         restaurantRecyclerView.setAdapter(mRestaurantAdapter);
-        mRestaurantAdapter.setOnRestaurantListener(ResRecyclerViewActivity.this);
+        //mRestaurantAdapter.setOnRestaurantListener(ResRecyclerViewActivity.this); saveButton but KIV
+
 
         mReference=FirebaseDatabase.getInstance().getReference().child("Restaurant");
 
@@ -68,7 +69,7 @@ public class ResRecyclerViewActivity extends AppCompatActivity implements Restau
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(ResRecyclerViewActivity.this,"Error",Toast.LENGTH_SHORT);
+                Toast.makeText(ResRecyclerViewActivity.this,"Error",Toast.LENGTH_SHORT).show();
             }
         }));
 
@@ -79,7 +80,7 @@ public class ResRecyclerViewActivity extends AppCompatActivity implements Restau
         RestaurantDetails clickedRestaurant = mRestaurantDetailsArrayList.get(position);
         String [] restaurantData = {clickedRestaurant.getName()};
         openInfoActivity(restaurantData);
-        Toast toast=Toast. makeText(getApplicationContext(),"This is clicked",Toast. LENGTH_SHORT);
+        Toast. makeText(getApplicationContext(),"This is clicked",Toast. LENGTH_SHORT).show();
         Log.d(TAG,"This is clicked");
     }
 

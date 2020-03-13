@@ -45,7 +45,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         Log.d(TAG, "onBindViewHolder: called.");
 
         //bind data here
-        RestaurantDetails mRestaurantDetails = mRestaurantDetailsArrayList.get(position); //check again later
+        final RestaurantDetails mRestaurantDetails = mRestaurantDetailsArrayList.get(position); //check again later
         restaurantViewHolder.restaurant_Name.setText(mRestaurantDetails.getName());
         //restaurantViewHolder.restaurant_Address.setText(mRestaurantDetails.getAddress());
         restaurantViewHolder.restaurant_Location.setText(mRestaurantDetails.getLocation());
@@ -55,7 +55,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         {
             @Override
             public void onRestaurantClick(int position) {
-
+                //Open InfoActivity
+                openInfoActivity(mRestaurantDetails.getName(),mRestaurantDetails.getLocation(),mRestaurantDetails.getCategory());
             }
         });
     }
