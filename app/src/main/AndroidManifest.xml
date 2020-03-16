@@ -25,6 +25,7 @@
         <activity android:name=".ResRecyclerViewActivity" />
         <activity android:name=".PermissionActivity">
             <intent-filter>
+                <action android:name="android.intent.action.RestaurantInfoActivity" />
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

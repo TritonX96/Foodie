@@ -10,11 +10,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -56,7 +53,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             @Override
             public void onRestaurantClick(int position) {
                 //Open InfoActivity
-                openInfoActivity(mRestaurantDetails.getName(),mRestaurantDetails.getLocation(),mRestaurantDetails.getCategory());
+                openInfoActivity(mRestaurantDetails.getName(),mRestaurantDetails.getCategory(),mRestaurantDetails.getLocation());
             }
         });
     }

@@ -31,10 +31,13 @@ public class ResRecyclerViewActivity extends AppCompatActivity implements Restau
     RestaurantAdapter mRestaurantAdapter;
     //List <RestaurantDetails> mRestaurant;
     ArrayList<RestaurantDetails> mRestaurantDetailsArrayList;
+    //String url = intent.getExtras().getString("intent");
 
-    private void openInfoActivity(String[] data){
+    private void openInfoActivity(String[] info){
         Intent intent = new Intent(this, RestaurantInfoActivity.class);
-        intent.putExtra("RESTAURANT_NAME",data[0]);
+        intent.putExtra("NAME_KEY",info[0]);
+        intent.putExtra("CATEGORY_KEY",info[1]);
+        intent.putExtra("LOCATION_KEY",info[2]);
         startActivity(intent);
     }
 
@@ -55,7 +58,7 @@ public class ResRecyclerViewActivity extends AppCompatActivity implements Restau
 
 
         mReference=FirebaseDatabase.getInstance().getReference().child("Restaurant");
-
+        //https://stackoverflow.com/questions/47367801/is-it-better-to-pass-more-information-in-an-intent-to-an-activity-or-call-the-da
         mReference.addValueEventListener((new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -78,12 +81,9 @@ public class ResRecyclerViewActivity extends AppCompatActivity implements Restau
     @Override
     public void onRestaurantClick(int position) {
         RestaurantDetails clickedRestaurant = mRestaurantDetailsArrayList.get(position);
-        String [] restaurantData = {clickedRestaurant.getName()};
+        String [] restaurantData = {clickedRestaurant.getName(),clickedRestaurant.getCategory(),clickedRestaurant.getLocation()};
         openInfoActivity(restaurantData);
         Toast. makeText(getApplicationContext(),"This is clicked",Toast. LENGTH_SHORT).show();
         Log.d(TAG,"This is clicked");
     }
-
-
-
 }
