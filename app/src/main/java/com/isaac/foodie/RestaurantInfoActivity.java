@@ -39,11 +39,11 @@ public class RestaurantInfoActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.restaurant_details);
+        setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: started.");
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         //Action bar
         //ActionBar actionBar = getSupportActionBar();
@@ -53,23 +53,23 @@ public class RestaurantInfoActivity extends AppCompatActivity{
         //actionBar.setDisplayHomeAsUpEnabled(true);
         //actionBar.setDisplayShowHomeEnabled(true);
 
-        iRestaurantName = findViewById(R.id.restaurantName);
-        iRestaurantCategory = findViewById(R.id.restaurantCategory);
-        iRestaurantLocation = findViewById(R.id.restaurantLocation);
+//        iRestaurantName = findViewById(R.id.restaurantName);
+//        iRestaurantCategory = findViewById(R.id.restaurantCategory);
+//        iRestaurantLocation = findViewById(R.id.restaurantLocation);
         //iRestaurantAddress = findViewById(R.id.restaurant_Address);
 
         //Get Intent
-        Intent i = this.getIntent();
+//        Intent i = this.getIntent();
 
         //Receive Data
-        String name = i.getExtras().getString("NAME_KEY");
-        String category = i.getExtras().getString("CATEGORY_KEY");
-        String location = i.getExtras().getString("LOCATION_KEY");
-
-        //Bind data
-        iRestaurantName.setText(name);
-        iRestaurantCategory.setText(category);
-        iRestaurantLocation.setText(location);
+//        String name = i.getExtras().getString("NAME_KEY");
+//        String category = i.getExtras().getString("CATEGORY_KEY");
+//        String location = i.getExtras().getString("LOCATION_KEY");
+//
+//        //Bind data
+//        iRestaurantName.setText(name);
+//        iRestaurantCategory.setText(category);
+//        iRestaurantLocation.setText(location);
 
     }
 

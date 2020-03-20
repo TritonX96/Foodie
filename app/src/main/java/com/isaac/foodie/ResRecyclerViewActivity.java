@@ -47,6 +47,7 @@ public class ResRecyclerViewActivity extends AppCompatActivity implements Restau
         mReference.addValueEventListener((new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
                     RestaurantDetails r = dataSnapshot1.getValue(RestaurantDetails.class);
                     mRestaurantDetailsArrayList.add(r);
@@ -66,7 +67,6 @@ public class ResRecyclerViewActivity extends AppCompatActivity implements Restau
     @Override
     public void onRestaurantClick(int position) {
         mRestaurantDetailsArrayList.get(position);
-        Toast.makeText(this, "You clicked this restaurant", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, RestaurantInfoActivity.class);
         startActivity(intent);
     }
