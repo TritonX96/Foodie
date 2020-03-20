@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,42 +22,28 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class ResRecyclerViewActivity extends AppCompatActivity implements RestaurantAdapter.OnRestaurantListener {
+public class ResRecyclerViewActivity extends AppCompatActivity implements RestaurantAdapter.OnRestaurantListener{
 
-    private static final String TAG = ResRecyclerViewActivity.class.getSimpleName();
     DatabaseReference mReference;
     RecyclerView restaurantRecyclerView;
     RestaurantAdapter mRestaurantAdapter;
     //List <RestaurantDetails> mRestaurant;
     ArrayList<RestaurantDetails> mRestaurantDetailsArrayList;
-    //String url = intent.getExtras().getString("intent");
 
-    private void openInfoActivity(String[] info){
-        Intent intent = new Intent(this, RestaurantInfoActivity.class);
-        intent.putExtra("NAME_KEY",info[0]);
-        intent.putExtra("CATEGORY_KEY",info[1]);
-        intent.putExtra("LOCATION_KEY",info[2]);
-        startActivity(intent);
-    }
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurantlist);
-        Log.d(TAG, "onCreate: started.");
 
         //ini view
+
         restaurantRecyclerView = findViewById(R.id.restaurant_rv);
         mRestaurantDetailsArrayList = new ArrayList<>();
         restaurantRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRestaurantAdapter = new RestaurantAdapter (ResRecyclerViewActivity.this,mRestaurantDetailsArrayList);
-        restaurantRecyclerView.setAdapter(mRestaurantAdapter);
-        //mRestaurantAdapter.setOnRestaurantListener(ResRecyclerViewActivity.this); saveButton but KIV
-
 
         mReference=FirebaseDatabase.getInstance().getReference().child("Restaurant");
-        //https://stackoverflow.com/questions/47367801/is-it-better-to-pass-more-information-in-an-intent-to-an-activity-or-call-the-da
         mReference.addValueEventListener((new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -72,18 +57,17 @@ public class ResRecyclerViewActivity extends AppCompatActivity implements Restau
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(ResRecyclerViewActivity.this,"Error",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ResRecyclerViewActivity.this,"Error",Toast.LENGTH_SHORT);
             }
         }));
-
-
     }
+
+
     @Override
     public void onRestaurantClick(int position) {
-        RestaurantDetails clickedRestaurant = mRestaurantDetailsArrayList.get(position);
-        String [] restaurantData = {clickedRestaurant.getName(),clickedRestaurant.getCategory(),clickedRestaurant.getLocation()};
-        openInfoActivity(restaurantData);
-        Toast. makeText(getApplicationContext(),"This is clicked",Toast. LENGTH_SHORT).show();
-        Log.d(TAG,"This is clicked");
+        mRestaurantDetailsArrayList.get(position);
+        Toast.makeText(this, "You clicked this restaurant", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, RestaurantInfoActivity.class);
+        startActivity(intent);
     }
 }

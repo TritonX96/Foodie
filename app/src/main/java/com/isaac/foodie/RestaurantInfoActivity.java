@@ -13,6 +13,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 public class RestaurantInfoActivity extends AppCompatActivity{
@@ -20,6 +30,10 @@ public class RestaurantInfoActivity extends AppCompatActivity{
     TextView iRestaurantName, iRestaurantCategory, iRestaurantAddress, iRestaurantLocation;
     private Toolbar toolbar;
     private static final String TAG = RestaurantInfoActivity.class.getSimpleName();
+    DatabaseReference mReference;
+    RestaurantAdapter mRestaurantAdapter;
+    ArrayList<RestaurantDetails> mRestaurantDetailsArrayList;
+
 
 
     @Override
@@ -30,9 +44,6 @@ public class RestaurantInfoActivity extends AppCompatActivity{
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-
 
         //Action bar
         //ActionBar actionBar = getSupportActionBar();
@@ -45,25 +56,20 @@ public class RestaurantInfoActivity extends AppCompatActivity{
         iRestaurantName = findViewById(R.id.restaurantName);
         iRestaurantCategory = findViewById(R.id.restaurantCategory);
         iRestaurantLocation = findViewById(R.id.restaurantLocation);
-        //iRestaurantAddress = findViewById(R.id.restaurantAddress);
+        //iRestaurantAddress = findViewById(R.id.restaurant_Address);
 
         //Get Intent
         Intent i = this.getIntent();
 
         //Receive Data
         String name = i.getExtras().getString("NAME_KEY");
-        Log.d(TAG,"The name is " + name);
         String category = i.getExtras().getString("CATEGORY_KEY");
-        //Log.i(category, "This is category");
         String location = i.getExtras().getString("LOCATION_KEY");
-        //Log.i(location, "This is location");
 
         //Bind data
         iRestaurantName.setText(name);
         iRestaurantCategory.setText(category);
         iRestaurantLocation.setText(location);
-
-
 
     }
 
