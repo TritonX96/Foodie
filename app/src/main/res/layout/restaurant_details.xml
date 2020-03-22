@@ -19,18 +19,20 @@
         android:orientation="vertical">
 
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/restaurantAddress"-->
-        <!--            android:layout_width="297dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_below="@id/restaurantName"-->
-        <!--            android:layout_alignStart="@id/restaurantName"-->
-        <!--            android:layout_alignParentTop="true"-->
-        <!--            android:layout_marginStart="-5dp"-->
-        <!--            android:layout_marginTop="348dp"-->
-        <!--            android:text="Restaurant Address"-->
-        <!--            android:textColor="@color/title_text_color"-->
-        <!--            android:textSize="16dp" />-->
+        <TextView
+            android:id="@+id/restaurantAddress"
+            android:layout_width="297dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/restaurantName"
+            android:layout_alignStart="@id/restaurantName"
+            android:layout_alignParentTop="true"
+            android:text="Restaurant Address"
+            android:textColor="@color/title_text_color"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.168"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="401dp" />
 
         <TextView
             android:id="@+id/restaurantName"
@@ -39,7 +41,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="5dp"
-            android:layout_marginBottom="120dp"
+            android:layout_marginBottom="188dp"
             android:text="Simple Title"
             android:textColor="@color/title_text_color"
             android:textSize="24dp"

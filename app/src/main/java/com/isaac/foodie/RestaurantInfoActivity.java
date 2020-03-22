@@ -28,48 +28,61 @@ import java.util.ArrayList;
 public class RestaurantInfoActivity extends AppCompatActivity{
 
     TextView iRestaurantName, iRestaurantCategory, iRestaurantAddress, iRestaurantLocation;
-    private Toolbar toolbar;
     private static final String TAG = RestaurantInfoActivity.class.getSimpleName();
     DatabaseReference mReference;
     RestaurantAdapter mRestaurantAdapter;
     ArrayList<RestaurantDetails> mRestaurantDetailsArrayList;
+    RecyclerView restaurantInfoView;
+    private String mPost_key = null;
 
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.restaurant_details);
         Log.d(TAG, "onCreate: started.");
 
-//        toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
-        //Action bar
-        //ActionBar actionBar = getSupportActionBar();
-        //Actionbar title
-        //actionBar.setTitle("Restaurant Detail");
-        //set back button in action bar
-        //actionBar.setDisplayHomeAsUpEnabled(true);
-        //actionBar.setDisplayShowHomeEnabled(true);
+        String post_key = getIntent().getExtras().getString("post_id");
 
-//        iRestaurantName = findViewById(R.id.restaurantName);
-//        iRestaurantCategory = findViewById(R.id.restaurantCategory);
-//        iRestaurantLocation = findViewById(R.id.restaurantLocation);
-        //iRestaurantAddress = findViewById(R.id.restaurant_Address);
+        iRestaurantName = (TextView) findViewById(R.id.restaurantName);
+        iRestaurantAddress = (TextView) findViewById(R.id.restaurantAddress);
+        iRestaurantCategory = (TextView) findViewById(R.id.restaurantCategory);
+        iRestaurantLocation = (TextView) findViewById(R.id.restaurantLocation);
 
-        //Get Intent
-//        Intent i = this.getIntent();
 
-        //Receive Data
-//        String name = i.getExtras().getString("NAME_KEY");
-//        String category = i.getExtras().getString("CATEGORY_KEY");
-//        String location = i.getExtras().getString("LOCATION_KEY");
-//
-//        //Bind data
-//        iRestaurantName.setText(name);
-//        iRestaurantCategory.setText(category);
-//        iRestaurantLocation.setText(location);
+        //Toast.makeText(RestaurantInfoActivity.this, post_key,Toast.LENGTH_LONG).show();
+        //Log.d(TAG,"onClick" + post_key );
+
+        mReference.child(mPost_key).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String info_Name = (String) dataSnapshot.child("name").getValue();
+                String info_Address = (String) dataSnapshot.child("address").getValue();
+                String info_Category = (String) dataSnapshot.child("category").getValue();
+                String info_Location = (String) dataSnapshot.child("location").getValue();
+
+                iRestaurantName.setText(info_Name);
+                iRestaurantAddress.setText(info_Address);
+                iRestaurantCategory.setText(info_Category);
+                iRestaurantLocation.setText(info_Location);
+
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    RestaurantDetails r = dataSnapshot1.getValue(RestaurantDetails.class);
+                    mRestaurantDetailsArrayList.add(r);
+                }
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 

@@ -1,73 +1,47 @@
 package com.isaac.foodie;
 
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 
-public class ResRecyclerViewActivity extends AppCompatActivity implements RestaurantAdapter.OnRestaurantListener{
+public class ResRecyclerViewActivity extends AppCompatActivity {
 
-    DatabaseReference mReference;
-    RecyclerView restaurantRecyclerView;
-    RestaurantAdapter mRestaurantAdapter;
-    //List <RestaurantDetails> mRestaurant;
-    ArrayList<RestaurantDetails> mRestaurantDetailsArrayList;
+    private RecyclerView recyclerView;
+    private RestaurantAdapter adapter;
 
-
-
-    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurantlist);
 
-        //ini view
+        recyclerView = findViewById(R.id.restaurant_rv);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        restaurantRecyclerView = findViewById(R.id.restaurant_rv);
-        mRestaurantDetailsArrayList = new ArrayList<>();
-        restaurantRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        FirebaseRecyclerOptions<RestaurantDetails> options =
+                new FirebaseRecyclerOptions.Builder<RestaurantDetails>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Restaurant"), RestaurantDetails.class)
+                        .build();
 
-        mReference=FirebaseDatabase.getInstance().getReference().child("Restaurant");
-        mReference.addValueEventListener((new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        adapter = new RestaurantAdapter(options);
+        recyclerView.setAdapter(adapter);
 
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                    RestaurantDetails r = dataSnapshot1.getValue(RestaurantDetails.class);
-                    mRestaurantDetailsArrayList.add(r);
-                }
-                mRestaurantAdapter = new RestaurantAdapter(ResRecyclerViewActivity.this,mRestaurantDetailsArrayList);
-                restaurantRecyclerView.setAdapter(mRestaurantAdapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(ResRecyclerViewActivity.this,"Error",Toast.LENGTH_SHORT);
-            }
-        }));
     }
-
 
     @Override
-    public void onRestaurantClick(int position) {
-        mRestaurantDetailsArrayList.get(position);
-        Intent intent = new Intent(this, RestaurantInfoActivity.class);
-        startActivity(intent);
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }
+
+//
