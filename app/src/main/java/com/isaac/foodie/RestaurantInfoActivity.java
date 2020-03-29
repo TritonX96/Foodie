@@ -1,21 +1,17 @@
 package com.isaac.foodie;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,11 +26,6 @@ public class RestaurantInfoActivity extends AppCompatActivity{
     TextView iRestaurantName, iRestaurantCategory, iRestaurantAddress, iRestaurantLocation;
     private static final String TAG = RestaurantInfoActivity.class.getSimpleName();
     DatabaseReference mReference;
-    RestaurantAdapter mRestaurantAdapter;
-    ArrayList<RestaurantDetails> mRestaurantDetailsArrayList;
-    RecyclerView restaurantInfoView;
-    private String mPost_key = null;
-
 
 
     @Override
@@ -43,37 +34,58 @@ public class RestaurantInfoActivity extends AppCompatActivity{
         setContentView(R.layout.restaurant_details);
         Log.d(TAG, "onCreate: started.");
 
+        FirebaseRecyclerOptions<RestaurantDetails> options =
+                new FirebaseRecyclerOptions.Builder<RestaurantDetails>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Restaurant"), RestaurantDetails.class)
+                        .build();
 
-        String post_key = getIntent().getExtras().getString("post_id");
+        //Toast.makeText(RestaurantInfoActivity.this, post_key,Toast.LENGTH_LONG).show();
+        //Log.d(TAG,"onClick" + post_key );
+
+
+
+        mReference = FirebaseDatabase.getInstance().getReference().child("Restaurant");
+
+        final String post_key = getIntent().getExtras().get("post_key").toString();
 
         iRestaurantName = (TextView) findViewById(R.id.restaurantName);
         iRestaurantAddress = (TextView) findViewById(R.id.restaurantAddress);
         iRestaurantCategory = (TextView) findViewById(R.id.restaurantCategory);
         iRestaurantLocation = (TextView) findViewById(R.id.restaurantLocation);
 
-
-        //Toast.makeText(RestaurantInfoActivity.this, post_key,Toast.LENGTH_LONG).show();
-        //Log.d(TAG,"onClick" + post_key );
-
-        mReference.child(mPost_key).addValueEventListener(new ValueEventListener() {
+        mReference.child(post_key).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String info_Name = (String) dataSnapshot.child("name").getValue();
-                String info_Address = (String) dataSnapshot.child("address").getValue();
-                String info_Category = (String) dataSnapshot.child("category").getValue();
-                String info_Location = (String) dataSnapshot.child("location").getValue();
 
-                iRestaurantName.setText(info_Name);
-                iRestaurantAddress.setText(info_Address);
-                iRestaurantCategory.setText(info_Category);
-                iRestaurantLocation.setText(info_Location);
+                RestaurantDetails details = dataSnapshot.getValue(RestaurantDetails.class);
+                if(dataSnapshot.exists()){
+                    String nameRestaurant = dataSnapshot.child("name").getValue().toString();
+                    String locationRestaurant = dataSnapshot.child("location").getValue().toString();
+                    String addressRestaurant = dataSnapshot.child("address").getValue().toString();
+                    String categoryRestaurant = dataSnapshot.child("category").getValue().toString();
+//                    String locationRestaurant = dataSnapshot.child("location").getValue().toString();
+//                    String addressRestaurant = dataSnapshot.child("address").getValue().toString();
+//                    String categoryRestaurant = dataSnapshot.child("category").getValue().toString();
 
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                    RestaurantDetails r = dataSnapshot1.getValue(RestaurantDetails.class);
-                    mRestaurantDetailsArrayList.add(r);
+                    iRestaurantName.setText(nameRestaurant);
+                    iRestaurantLocation.setText(locationRestaurant);
+                    iRestaurantAddress.setText(addressRestaurant);
+                    iRestaurantCategory.setText(categoryRestaurant);
+
+
                 }
 
 
+//                String nameRestaurant = dataSnapshot.getValue();
+//                RestaurantDetails locationRestaurant = dataSnapshot.child("location").getValue(RestaurantDetails.class);
+//                RestaurantDetails addressRestaurant = dataSnapshot.child("address").getValue(RestaurantDetails.class);
+//                RestaurantDetails categoryRestaurant = dataSnapshot.child("category").getValue(RestaurantDetails.class);
+
+
+//                iRestaurantName.setText(details.getName());
+//                iRestaurantAddress.setText(details.getAddress());
+//                iRestaurantCategory.setText(details.getCategory());
+//                iRestaurantLocation.setText(details.getLocation());
 
 
             }
@@ -84,7 +96,34 @@ public class RestaurantInfoActivity extends AppCompatActivity{
             }
         });
 
+
+
     }
+
+//    private void RetrieveRestaurantInfo() {
+//
+//        mReference.child(post_key).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//                dataSnapshot.getKey();
+//
+//                RestaurantDetails nameRestaurant = dataSnapshot.getValue(RestaurantDetails.class);
+//                RestaurantDetails locationRestaurant = dataSnapshot.getValue(RestaurantDetails.class);
+//                RestaurantDetails addressRestaurant = dataSnapshot.getValue(RestaurantDetails.class);
+//                RestaurantDetails categoryRestaurant = dataSnapshot.getValue(RestaurantDetails.class);
+//
+//                iRestaurantName.setText(nameRestaurant);
+//
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 
 
     //handle onBackPressed to previous activity
