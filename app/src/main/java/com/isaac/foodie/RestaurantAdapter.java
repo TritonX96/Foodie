@@ -44,11 +44,7 @@ public class RestaurantAdapter extends FirebaseRecyclerAdapter<RestaurantDetails
                 Intent intent = new Intent(view.getContext(), RestaurantInfoActivity.class);
                 intent.putExtra("post_key", post_key);
                 view.getContext().startActivity(intent);
-
-
-
-
-
+                
                 //Toast.makeText(view.getContext(),"It has been clicked", Toast.LENGTH_LONG).show();
 //                Toast.makeText(view.getContext(),"position" , + post_key).show();
 
