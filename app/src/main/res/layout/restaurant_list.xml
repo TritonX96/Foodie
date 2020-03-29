@@ -17,10 +17,17 @@
         android:paddingBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="7dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:id="@+id/restaurant_Image" />
 
         <TextView
             android:id="@+id/restaurant_Name"
@@ -28,8 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginStart="81dp"
+            android:layout_marginTop="3dp"
             android:text="Simple Title"
             android:textColor="@color/title_text_color"
             android:textStyle="bold"
@@ -37,27 +44,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-<!--        <TextView-->
-<!--    android:id="@+id/restaurant_Address"-->
-<!--    android:layout_width="297dp"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:layout_below="@id/restaurant_Name"-->
-<!--    android:layout_alignStart="@id/restaurant_Name"-->
-<!--    android:layout_alignParentTop="true"-->
-<!--    android:layout_marginStart="-1dp"-->
-<!--    android:layout_marginTop="29dp"-->
-<!--    android:text="Restaurant Address"-->
-<!--            android:textColor="@color/title_text_color" />-->
-
         <TextView
             android:id="@+id/restaurant_Location"
-            android:layout_width="297dp"
+            android:layout_width="207dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/restaurant_Name"
             android:layout_alignStart="@id/restaurant_Name"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="-3dp"
-            android:layout_marginTop="65dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="66dp"
             android:text="Restaurant Location"
             android:textColor="@color/title_text_color" />
 

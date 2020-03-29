@@ -6,10 +6,11 @@ public class RestaurantDetails {
         private String location;
         private String address;
         private String category;
+        private String image;
 //        private String lang;
 //        private String lon;
 
-    public RestaurantDetails(String name, String location, String address, String category) {
+    public RestaurantDetails(String name, String location, String address, String category, String image) {
         this.name = name;
         this.location = location;
         this.address = address;
@@ -30,6 +31,12 @@ public class RestaurantDetails {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) { this.image = image; }
 
     public String getLocation() {
         return location;

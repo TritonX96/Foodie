@@ -1,8 +1,10 @@
 package com.isaac.foodie;
 
 
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -24,6 +27,7 @@ import java.util.ArrayList;
 public class RestaurantInfoActivity extends AppCompatActivity{
 
     TextView iRestaurantName, iRestaurantCategory, iRestaurantAddress, iRestaurantLocation;
+    ImageView iRestaurantImage;
     private static final String TAG = RestaurantInfoActivity.class.getSimpleName();
     DatabaseReference mReference;
 
@@ -52,6 +56,7 @@ public class RestaurantInfoActivity extends AppCompatActivity{
         iRestaurantAddress = (TextView) findViewById(R.id.restaurantAddress);
         iRestaurantCategory = (TextView) findViewById(R.id.restaurantCategory);
         iRestaurantLocation = (TextView) findViewById(R.id.restaurantLocation);
+        iRestaurantImage =  (ImageView) findViewById(R.id.restaurantImage);
 
         mReference.child(post_key).addValueEventListener(new ValueEventListener() {
             @Override
@@ -63,10 +68,10 @@ public class RestaurantInfoActivity extends AppCompatActivity{
                     String locationRestaurant = dataSnapshot.child("location").getValue().toString();
                     String addressRestaurant = dataSnapshot.child("address").getValue().toString();
                     String categoryRestaurant = dataSnapshot.child("category").getValue().toString();
-//                    String locationRestaurant = dataSnapshot.child("location").getValue().toString();
-//                    String addressRestaurant = dataSnapshot.child("address").getValue().toString();
-//                    String categoryRestaurant = dataSnapshot.child("category").getValue().toString();
+                    String imageRestaurant = dataSnapshot.child("image").getValue().toString();
 
+
+                    Picasso.get().load(imageRestaurant).into(iRestaurantImage);
                     iRestaurantName.setText(nameRestaurant);
                     iRestaurantLocation.setText(locationRestaurant);
                     iRestaurantAddress.setText(addressRestaurant);
@@ -74,19 +79,6 @@ public class RestaurantInfoActivity extends AppCompatActivity{
 
 
                 }
-
-
-//                String nameRestaurant = dataSnapshot.getValue();
-//                RestaurantDetails locationRestaurant = dataSnapshot.child("location").getValue(RestaurantDetails.class);
-//                RestaurantDetails addressRestaurant = dataSnapshot.child("address").getValue(RestaurantDetails.class);
-//                RestaurantDetails categoryRestaurant = dataSnapshot.child("category").getValue(RestaurantDetails.class);
-
-
-//                iRestaurantName.setText(details.getName());
-//                iRestaurantAddress.setText(details.getAddress());
-//                iRestaurantCategory.setText(details.getCategory());
-//                iRestaurantLocation.setText(details.getLocation());
-
 
             }
 
