@@ -82,6 +82,7 @@ public class RestaurantInfoActivity extends AppCompatActivity{
                     iRestaurantCategory.setText(categoryRestaurant);
 
 
+                    //When user clicked, this will bring to the map activity
                     coordinateButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
