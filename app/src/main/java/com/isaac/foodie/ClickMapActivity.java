@@ -79,21 +79,32 @@ public class ClickMapActivity  extends FragmentActivity implements OnMapReadyCal
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        LatLng latLng = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions().position(latLng)
+//        LatLng latLng = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
+//        MarkerOptions markerOptions = new MarkerOptions().position(latLng)
+//                .title("Current Position");
+//        googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+//        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
+//        googleMap.addMarker(markerOptions);
+
+        Intent mapIntent = this.getIntent();
+
+        Double lat = Double.valueOf(mapIntent.getExtras().getString("latitude"));
+        Double lng = Double.valueOf(mapIntent.getExtras().getString("longitude"));
+
+        LatLng restaurantLatLng = new LatLng(lat, lng);
+        MarkerOptions markerOptions = new MarkerOptions().position(restaurantLatLng)
                 .title("Current Position");
-        googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLng(restaurantLatLng));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(restaurantLatLng, 15));
         googleMap.addMarker(markerOptions);
 
-        googleMap.addCircle(
-                new CircleOptions()
-                        .center(latLng)
-                        .radius(100.0)
-                        .strokeWidth(3f)
-                        .strokeColor(Color.BLACK)
-                        .fillColor(Color.argb(70, 51, 171, 249))
-
-        );
+//        googleMap.addCircle(
+//                new CircleOptions()
+//                        .center(restaurantLatLng)
+//                        .radius(100.0)
+//                        .strokeWidth(3f)
+//                        .strokeColor(Color.BLACK)
+//                        .fillColor(Color.argb(70, 51, 171, 249))
+//    );
     }
 }

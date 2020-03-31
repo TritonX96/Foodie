@@ -86,8 +86,15 @@ public class RestaurantInfoActivity extends AppCompatActivity{
                     coordinateButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            final double lat = Objects.requireNonNull(dataSnapshot.child("latitude").getValue()).hashCode();
-                            final double lng = Objects.requireNonNull(dataSnapshot.child("longitude").getValue()).hashCode();
+//                            final String lat = Objects.requireNonNull(dataSnapshot.child("latitude").getValue()).toString();
+//                            final String lng = Objects.requireNonNull(dataSnapshot.child("longitude").getValue()).toString();
+                            String lat = dataSnapshot.child("latitude").getValue().toString();
+                            String lng = dataSnapshot.child("longitude").getValue().toString();
+
+                            Intent mapIntent = new Intent(RestaurantInfoActivity.this, ClickMapActivity.class);
+                            mapIntent.putExtra("latitude",lat);
+                            mapIntent.putExtra("longitude",lng);
+                            startActivity(mapIntent);
                         }
                     });
                 }

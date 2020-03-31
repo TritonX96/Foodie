@@ -23,6 +23,7 @@
         <activity android:name=".RestaurantInfoActivity" />
         <activity android:name=".MapActivity" />
         <activity android:name=".ResRecyclerViewActivity" />
+        <activity android:name=".ClickMapActivity" />
         <activity android:name=".PermissionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.RestaurantInfoActivity" />
