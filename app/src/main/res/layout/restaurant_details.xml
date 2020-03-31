@@ -15,7 +15,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="392dp"
-        android:layout_height="562dp"
+        android:layout_height="636dp"
         android:orientation="vertical">
 
 
@@ -29,31 +29,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/restaurantAddress"
-            android:layout_width="297dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/restaurantName"
-            android:layout_alignStart="@id/restaurantName"
-            android:layout_alignParentTop="true"
-            android:layout_marginBottom="24dp"
-            android:text="Restaurant Address"
-            android:textColor="@color/title_text_color"
-            android:textSize="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/restaurantLocation"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.063"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurantName"
-            app:layout_constraintVertical_bias="0.906" />
-
-        <TextView
             android:id="@+id/restaurantName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="5dp"
-            android:layout_marginBottom="184dp"
+            android:layout_marginBottom="252dp"
             android:text="Simple Title"
             android:textColor="@color/title_text_color"
             android:textSize="24dp"
@@ -70,26 +52,54 @@
             android:layout_below="@id/restaurantName"
             android:layout_alignStart="@id/restaurantName"
             android:layout_alignParentTop="true"
-            android:layout_marginBottom="80dp"
+            android:layout_marginEnd="88dp"
+            android:layout_marginBottom="164dp"
             android:text="Restaurant Location"
             android:textColor="@color/title_text_color"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.063"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/restaurantCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/restaurantLocation"
+            android:layout_alignStart="@id/restaurantName"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="208dp"
             android:text="Category"
             android:textColor="@color/content_text_color"
             android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.022"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/restaurantAddress"
+            android:layout_width="297dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/restaurantName"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="88dp"
+            android:layout_marginBottom="96dp"
+            android:text="Restaurant Address"
+            android:textColor="@color/title_text_color"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/restaurantLocation"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/restaurantCoordinates"
+            android:layout_width="107dp"
+            android:layout_height="59dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Click for Location"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

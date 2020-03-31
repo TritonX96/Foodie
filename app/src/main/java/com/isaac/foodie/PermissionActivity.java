@@ -26,6 +26,8 @@ public class PermissionActivity extends AppCompatActivity {
 
     private Button btnGrant;
 
+    //The code is self explanatory as it is to check permission to access GPS
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);

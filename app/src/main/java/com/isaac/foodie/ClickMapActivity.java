@@ -89,7 +89,7 @@ public class ClickMapActivity  extends FragmentActivity implements OnMapReadyCal
         googleMap.addCircle(
                 new CircleOptions()
                         .center(latLng)
-                        .radius(500.0)
+                        .radius(100.0)
                         .strokeWidth(3f)
                         .strokeColor(Color.BLACK)
                         .fillColor(Color.argb(70, 51, 171, 249))

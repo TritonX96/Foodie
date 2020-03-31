@@ -10,8 +10,6 @@ import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 
-
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -27,7 +25,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.maps.android.SphericalUtil;
 
 import java.io.IOException;
 import java.util.List;
@@ -103,11 +100,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback{
                        .fillColor(Color.argb(70,51,171,249))
 
        );
-
-//        LatLng restLatlng = new LatLng(mRestaurantLocation.getLang(),mRestaurantLocation.getLong());
-//        MarkerOptions restaMarker = new MarkerOptions().position(restLatlng)
-//                .title(getName);
-
 
 
     }

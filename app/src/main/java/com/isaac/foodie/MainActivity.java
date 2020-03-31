@@ -30,6 +30,7 @@ public class MainActivity<item> extends AppCompatActivity  {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Will add in more function but for the time being, it just go straight to current location
         locationButton = findViewById(R.id.location_button);
         locationButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -38,6 +39,8 @@ public class MainActivity<item> extends AppCompatActivity  {
             }
         });
 
+
+        //This is to test out the recyclerview before making more advanced like sort and filter
         databaseButton = findViewById(R.id.database_button);
         databaseButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -56,6 +59,7 @@ public class MainActivity<item> extends AppCompatActivity  {
         return true;
     }
 
+    //Testing
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.search) {

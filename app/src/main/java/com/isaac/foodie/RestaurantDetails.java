@@ -7,16 +7,17 @@ public class RestaurantDetails {
         private String address;
         private String category;
         private String image;
-//        private String lang;
-//        private String lon;
+        private Double latitude;
+        private Double longitude;
 
-    public RestaurantDetails(String name, String location, String address, String category, String image) {
+    public RestaurantDetails(String name, String location, String address, String category, String image, Double latitude, Double longitude) {
         this.name = name;
         this.location = location;
         this.address = address;
         this.category = category;
-//        this.lang = lang;
-//        this.lon = lon;
+        this.image = image;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public RestaurantDetails() {
@@ -62,20 +63,20 @@ public class RestaurantDetails {
         this.category = category;
     }
 
-//    public String getLang() {
-//        return lang;
-//    }
-//
-//    public void setLang(String lang) {
-//        this.lang = lang;
-//    }
-//
-//    public String getLon() {
-//        return lon;
-//    }
-//
-//    public void setLon(String lon) {
-//        this.lon = lon;
-//    }
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double lang) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
 
 }
