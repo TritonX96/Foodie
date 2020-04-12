@@ -1,7 +1,6 @@
-package com.isaac.foodie;
+package com.isaac.foodie.Model;
 
 public class RestaurantDetails {
-        //private UUID mId;
         private String name;
         private String location;
         private String address;
@@ -9,6 +8,7 @@ public class RestaurantDetails {
         private String image;
         private Double latitude;
         private Double longitude;
+
 
     public RestaurantDetails(String name, String location, String address, String category, String image, Double latitude, Double longitude) {
         this.name = name;
@@ -18,6 +18,7 @@ public class RestaurantDetails {
         this.image = image;
         this.latitude = latitude;
         this.longitude = longitude;
+
     }
 
     public RestaurantDetails() {
@@ -63,20 +64,14 @@ public class RestaurantDetails {
         this.category = category;
     }
 
-    public Double getLatitude() {
-        return latitude;
-    }
+    public Double getLatitude() {return latitude;}
 
-    public void setLatitude(Double lang) {
-        this.latitude = latitude;
-    }
+    public void setLatitude(Double lang) {this.latitude = latitude;}
 
-    public Double getLongitude() {
-        return longitude;
-    }
+    public Double getLongitude() {return longitude;}
 
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
+    public void setLongitude(Double longitude) {this.longitude = longitude;}
+
+
 
 }

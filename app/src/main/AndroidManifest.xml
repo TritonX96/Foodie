@@ -22,6 +22,7 @@
             android:value="AIzaSyANd6E-8-NvCwFDQg78SktmTY4KgAR7UzU" />
         <activity android:name=".RestaurantInfoActivity" />
         <activity android:name=".MapActivity" />
+        <activity android:name=".CategoryRecyclerView" />
         <activity android:name=".ResRecyclerViewActivity" />
         <activity android:name=".ClickMapActivity" />
         <activity android:name=".PermissionActivity">

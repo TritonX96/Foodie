@@ -18,7 +18,8 @@ public class MainActivity<item> extends AppCompatActivity  {
     private Button searchButton;
     private Button locationButton;
     private Button databaseButton;
-
+    private Button areaButton;
+    private Button categoryButton;
 
 
     @Override
@@ -30,7 +31,7 @@ public class MainActivity<item> extends AppCompatActivity  {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Will add in more function but for the time being, it just go straight to current location
+        //Search for nearby restaurants based on the radius maybe 1km or 2km
         locationButton = findViewById(R.id.location_button);
         locationButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -51,7 +52,26 @@ public class MainActivity<item> extends AppCompatActivity  {
             }
         });
 
+        //Will print out a list of category and then click on the choice of category will print out based on the category
+        categoryButton = findViewById(R.id.category_button);
+        categoryButton.setOnClickListener(new View.OnClickListener(){
+                               @Override
+                               public void onClick(View v) {
+
+                                   Intent intent = new Intent(v.getContext(),CategoryRecyclerView.class);
+                                   v.getContext().startActivity(intent);
+                               }
+                           });
+
+        //Will print out a list of area and then click on the choice of area will print out based on the area
+        areaButton = findViewById(R.id.category_button);
+
+
+
+
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

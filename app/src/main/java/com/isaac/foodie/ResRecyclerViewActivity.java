@@ -7,27 +7,30 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
+import com.isaac.foodie.Adapter.RestaurantAdapter;
+import com.isaac.foodie.Model.RestaurantDetails;
 
 
 public class ResRecyclerViewActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
+
+    private RecyclerView restaurantRecyclerView;
     private RestaurantAdapter adapter;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurantlist);
 
-        recyclerView = findViewById(R.id.restaurant_rv);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        restaurantRecyclerView = findViewById(R.id.restaurant_rv);
+        restaurantRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         FirebaseRecyclerOptions<RestaurantDetails> options =
                 new FirebaseRecyclerOptions.Builder<RestaurantDetails>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Restaurant"), RestaurantDetails.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Restaurant").child("Info"), RestaurantDetails.class)
                         .build();
 
         adapter = new RestaurantAdapter(options);
-        recyclerView.setAdapter(adapter);
+        restaurantRecyclerView.setAdapter(adapter);
 
     }
 
@@ -44,4 +47,3 @@ public class ResRecyclerViewActivity extends AppCompatActivity {
     }
 }
 
-//

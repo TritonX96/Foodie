@@ -2,7 +2,6 @@ package com.isaac.foodie;
 
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,10 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.isaac.foodie.Model.RestaurantDetails;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.Objects;
 
 
 public class RestaurantInfoActivity extends AppCompatActivity{
@@ -46,7 +43,7 @@ public class RestaurantInfoActivity extends AppCompatActivity{
 
         FirebaseRecyclerOptions<RestaurantDetails> options =
                 new FirebaseRecyclerOptions.Builder<RestaurantDetails>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Restaurant"), RestaurantDetails.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Restaurant").child("Info"), RestaurantDetails.class)
                         .build();
 
         iRestaurantName = (TextView) findViewById(R.id.restaurantName);
@@ -61,7 +58,7 @@ public class RestaurantInfoActivity extends AppCompatActivity{
         final String post_key = getIntent().getExtras().get("post_key").toString();
 
 
-        mReference = FirebaseDatabase.getInstance().getReference().child("Restaurant");
+        mReference = FirebaseDatabase.getInstance().getReference().child("Restaurant").child("Info");
         mReference.child(post_key).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
@@ -86,8 +83,6 @@ public class RestaurantInfoActivity extends AppCompatActivity{
                     coordinateButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-//                            final String lat = Objects.requireNonNull(dataSnapshot.child("latitude").getValue()).toString();
-//                            final String lng = Objects.requireNonNull(dataSnapshot.child("longitude").getValue()).toString();
                             String lat = dataSnapshot.child("latitude").getValue().toString();
                             String lng = dataSnapshot.child("longitude").getValue().toString();
 

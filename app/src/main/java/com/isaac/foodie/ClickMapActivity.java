@@ -2,6 +2,7 @@ package com.isaac.foodie;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.RestrictionEntry;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
@@ -55,6 +56,7 @@ public class ClickMapActivity  extends FragmentActivity implements OnMapReadyCal
     }
     private void fetchLastLocation() {
 
+
         if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
             ActivityCompat.requestPermissions(this, new String[]
                     {Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_CODE);
@@ -79,12 +81,7 @@ public class ClickMapActivity  extends FragmentActivity implements OnMapReadyCal
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-//        LatLng latLng = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
-//        MarkerOptions markerOptions = new MarkerOptions().position(latLng)
-//                .title("Current Position");
-//        googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-//        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
-//        googleMap.addMarker(markerOptions);
+
 
         Intent mapIntent = this.getIntent();
 

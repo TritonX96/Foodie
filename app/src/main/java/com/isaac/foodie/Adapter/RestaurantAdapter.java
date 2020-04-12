@@ -1,4 +1,4 @@
-package com.isaac.foodie;
+package com.isaac.foodie.Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +12,9 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
+import com.isaac.foodie.R;
+import com.isaac.foodie.Model.RestaurantDetails;
+import com.isaac.foodie.RestaurantInfoActivity;
 import com.squareup.picasso.Picasso;
 
 
@@ -24,7 +27,7 @@ public class RestaurantAdapter extends FirebaseRecyclerAdapter<RestaurantDetails
 
     FirebaseRecyclerOptions<RestaurantDetails> options =
             new FirebaseRecyclerOptions.Builder<RestaurantDetails>()
-                    .setQuery(FirebaseDatabase.getInstance().getReference().child("Restaurant"), RestaurantDetails.class)
+                    .setQuery(FirebaseDatabase.getInstance().getReference().child("Restaurant").child("Info"), RestaurantDetails.class)
                     .build();
 
 
@@ -48,9 +51,6 @@ public class RestaurantAdapter extends FirebaseRecyclerAdapter<RestaurantDetails
                 intent.putExtra("post_key", post_key);
                 view.getContext().startActivity(intent);
 
-                //Toast.makeText(view.getContext(),"It has been clicked", Toast.LENGTH_LONG).show();
-//                Toast.makeText(view.getContext(),"position" , + post_key).show();
-
             }
         });
     }
@@ -65,18 +65,17 @@ public class RestaurantAdapter extends FirebaseRecyclerAdapter<RestaurantDetails
 
     class RestaurantViewHolder extends RecyclerView.ViewHolder{
 
-            TextView restaurant_Name, restaurant_Category,restaurant_Location;
+        TextView restaurant_Name, restaurant_Category,restaurant_Location;
+        ImageView restaurant_Image;
 
-            ImageView restaurant_Image;
+        public RestaurantViewHolder(@NonNull View itemView){
+            super(itemView);
+            restaurant_Name = itemView.findViewById(R.id.restaurant_Name);
+            restaurant_Category = itemView.findViewById(R.id.restaurant_Category);
+            restaurant_Location = itemView.findViewById(R.id.restaurant_Location);
+            restaurant_Image = itemView.findViewById(R.id.restaurant_Image);
 
-            public RestaurantViewHolder(@NonNull View itemView){
-                super(itemView);
-                restaurant_Name = itemView.findViewById(R.id.restaurant_Name);
-                restaurant_Category = itemView.findViewById(R.id.restaurant_Category);
-                restaurant_Location = itemView.findViewById(R.id.restaurant_Location);
-                restaurant_Image = itemView.findViewById(R.id.restaurant_Image);
-
-            }
         }
+    }
 
 }

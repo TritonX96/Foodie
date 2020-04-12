@@ -2,4 +2,26 @@
     <string name="app_name">Foodie</string>
     <string name="map_key" translatable="false">AIzaSyANd6E-8-NvCwFDQg78SktmTY4KgAR7UzU</string>
     <string name="title_activity_click_maps">Map</string>
+
+    //Category
+    <string-array name="category">
+        <item>Restaurant</item>
+        <item>Japanese</item>
+        <item>Seafood</item>
+        <item>Dim Sum</item>
+        <item>Korean</item>
+        <item>Dessert</item>
+        <item>Mamak</item>
+    </string-array>
+
+    //Location
+    <string-array name="location">
+        <item>Petaling Jaya</item>
+        <item>Bandar Sunway</item>
+        <item>Damansara</item>
+        <item>Subang Jaya</item>
+    </string-array>
+
+
+
 </resources>

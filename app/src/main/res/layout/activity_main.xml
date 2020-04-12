@@ -25,10 +25,11 @@
         android:id="@+id/location_button"
         android:layout_width="145dp"
         android:layout_height="68dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="256dp"
         android:drawableTop="@drawable/ic_search_black_24dp"
-        android:text="Location"
+        android:text="Nearby"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.139"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,9 +37,32 @@
         android:id="@+id/database_button"
         android:layout_width="145dp"
         android:layout_height="68dp"
-        android:layout_marginTop="388dp"
+        android:layout_marginTop="384dp"
         android:text="Restaurant Database"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/category_button"
+        android:layout_width="145dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="256dp"
+        android:text="Category"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.887"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/area_button"
+        android:layout_width="145dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="384dp"
+        android:text="Area"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.887"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
